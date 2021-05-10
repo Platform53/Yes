@@ -305,20 +305,27 @@ while menuactive == True:
         while addsubjectcheck == True:
             addaccesscode = input('Access Code: ')
             addaccesscode = hashlib.sha256(str.encode(addaccesscode)).hexdigest()
+            admincode = open('admincode','r').read()
             accessgranted = False
-            try:
-                codesubjects = open(addaccesscode,'r').read()
+            if addaccesscode == admincode:
                 addsubjectcheck = False
+                codesubjects = ()
+                admincode1 = True
+
+            else:
+                try:
+                    codesubjects = open(addaccesscode,'r').read()
+                    addsubjectcheck = False
                 
-            except IOError:
-                print ('make sure you put in the code correctly')
-                addsubjectcheck = True
+                except IOError:
+                    print ('make sure you put in the code correctly')
+                    addsubjectcheck = True
         subject = True
         while subject == True:
             print ('type in the subject that you wish to view')
             print ('or enter 1 to go to menu')
             subjectchosen = input('')
-            if (subjectchosen) in (codesubjects):
+            if (subjectchosen) in (codesubjects) or admincode1 == True:
                 print ('go ahead')
                 subject = False
                 accessgranted = True
