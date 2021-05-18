@@ -297,9 +297,8 @@ while menuactive == True:
             
     elif chosen == ('2'):
         viewer = ('')
-        yearchosen = input('which year do you want to add to ')
-        viewer = viewer + yearchosen
-        classchosen = input('which class do you want to view (just the ending e.g for 9m  just m)')
+        
+        classchosen = input('Class Name: )')
         viewer = viewer + classchosen
         addsubjectcheck = True
         while addsubjectcheck == True:
